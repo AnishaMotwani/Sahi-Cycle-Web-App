@@ -1,6 +1,6 @@
 # Sahi Cycle - Empowering Women's Health 🌸
 
-Sahi Cycle is an empathetic, AI-powered health platform designed to bridge the gap in menstrual health awareness. Developed for the **Google House of Innovation Hackathon**, this project provides data-driven tracking and personalized guidance.
+Sahi Cycle is an empathetic, AI-powered health platform designed to bridge the gap in menstrual health awareness.This project provides data-driven tracking and personalized guidance.
 
 ## 🚀 Live Demo
 MVP Link: https://sahi-cycle-live.web.app
