@@ -22,9 +22,8 @@ MVP Link: https://sahi-cycle-live.web.app
 
 ## 📂 Tech Stack
 * **Frontend:** HTML5, CSS3, JavaScript.
-* **Integrations:** Google Gemini API, Google Charts (URL/JS), Google Maps (Embed).
+* **Integrations:** Google Gemini API, Google Charts (URL/JS), Google Maps (Embed/JS),Google Web Translate.
 * **Cloud:** Firebase Hosting & Auth.
 
----
-**Built with ❤️ for Google House of Innovation Hackathon 2026** 🪁[index.html](https://github.com/user-attachments/files/24615589/index.html)
+--
 
