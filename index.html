@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="Description" content="Sahi Cycle: A gentle space for menstrual cycle tracking, supportive AI guidance, and finding nearby care in one simple web app.">
+<title>Sahi Cycle</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="Image/img.png" type="image/png">
+</head>
+<body>
+<div id="login-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,245,248,0.95); z-index: 1000000; display: flex; justify-content: center; align-items: center;">
+<div class="login-box" style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 340px; border: 1.5px solid #fce4ec;">
+<h2 style="color: #d81b60; font-size: 28px; margin-bottom: 25px;">🌸 Sahi-Cycle</h2>
+<input type="email" id="modal-email" placeholder="Email Address" style="width: 100%; padding: 12px; margin: 8px 0; border: 1.5px solid #fce4ec; border-radius: 10px; outline: none;">
+<input type="password" id="modal-password" placeholder="Password" style="width: 100%; padding: 12px; margin: 8px 0; border: 1.5px solid #fce4ec; border-radius: 10px; outline: none;">
+<button onclick="handleModalLogin()" style="width: 100%; padding: 12px; background: #d81b60; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 15px;">Login</button>
+<p style="font-size: 13px; margin-top: 20px; color: #666;">
+New here? Enter your details above and click 
+<a href="#" onclick="handleSignup()" style="color: #d81b60; font-weight: bold; text-decoration: underline;">Sign Up</a>
+</p>
+</div>
+</div>
+<header class="main-header">
+<div class="container header-flex">
+<div class="project-logo">
+<img src="Image/img.png" alt="logo" class="logo-img">
+<div class="project-text">
+<h1 class="project-title">Sahi Cycle</h1>
+<div class="tagline">
+<span class="highlight">Empowering your flow</span>
+<span class="sub-text">Your wellness, your natural rhythm</span>
+</div></div>
+</div>
+<div class="header-controls">
+<div id="google_translate_element"></div>
+<button onclick="logoutUser()" class="logout-btn">Log out</button>
+</div>
+</div>
+</header>
+<main>
+<section class="intro-section">
+<div class="container text-center-clean">
+<h2 class="welcome-title">Namaste! Meet <span class="didi-highlight">Sahi Didi🌸</span></h2>
+<p class="sub-intro">
+Your digital elder sister and menstrual wellness companion🤝   
+</p>
+<p class="descripton-text">
+Tracking your periods shouldn't feel like a chore—it should feel like a conversation. <br>
+Whether it's understanding your <strong>natural rhythm</strong> or navigating your cycle with confidence ✨, 
+I'm here to ensure you never have to manage your period journey alone 🌿.
+</p>
+<nav class="hero-actions-group">
+<a href="#tracker" class="action-btn-main">Start Tracking 📅</a>
+<a href="#ai-coach" class="action-btn-main outline">Talk to Didi 💬</a>
+<a href="#analytics" class="action-pill">📊 Health Trends</a>
+<a href="#clinic-locator" class="action-pill">📍 Nearby Clinics</a>
+</nav>
+</div>
+</section>
+<div class="container">
+<div class="dashboard-grid">
+<div class="top-row">
+<section id="tracker" class="card">
+<h2>📅 Cycle Tracker</h2>
+<form id="cycle-form">
+<div class="input-group">
+<label for="last-period">Last Period Start Date</label>
+<input type="date" id="last-period" required>
+</div>
+<div class="input-group">
+<label for="cycle-len">Cycle Length (Days)</label>
+<input type="number" id="cycle-len" min="20" max="45" value="28" required>
+</div>
+<div class="input-group">
+<label for="bleeding-days">Bleeding Duration (Days)</label>
+<input type="number" id="bleeding-days" min="1" max="10" value="5" required>
+</div>
+<div class="input-group">
+<label for="user-mood">How are you feeling today?</label>
+<select id="user-mood">
+<option value="Happy">Happy & Energetic 😊</option>
+<option value="Calm">Calm & Relaxed 🧘‍♀️</option>
+<option value="Cramps">Abdominal Cramps 🤕</option>
+<option value="Bloated">Bloated & Heavy 🎈</option>
+<option value="Tired">Tired & Low Energy 😴</option>
+<option value="Anxious">Anxious or Overwhelmed 😰</option>
+<option value="Irritable">Irritable/Mood Swings 😤</option>
+<option value="Emotional">Sensitive/Crying 🥺</option>
+<option value="Headache">Headache/Migraine ⚡</option>
+<option value="Productive">Productive/Focused 💪</option>
+</select>
+</div>
+<button type="button" id="btn-save" class="btn-save">Save & Update Trends ✨</button>
+<p id="save-status"></p>
+</form>
+</section>
+<section id="ai-coach" class="card">
+<h2>💬 Sahi Didi AI</h2>
+<div class="chat-box" id="chat-display"></div>
+<div class="chat-input-area">
+<input type="text" id="user-query" placeholder="Ask anything..." aria-label="Type your message to Sahi Didi">
+<button id="btn-send">Send</button>
+</div>
+</section>
+</div> <div class="charts-row">
+<section id="analytics" class="card">
+<h2>📊 Health Trends</h2>
+<div id="chart-placeholder" class="chart-placeholder">
+<p>"Let's map your rhythm! 📈<br>Log your latest period dates and mood to see your personal health trends in action."</p>
+</div>
+<div id="charts-container" class="hidden">
+<div class="chart-item">
+<div id="cycle_length_chart" class="google-chart"></div>
+<p class="chart-p">Tracking your actual cycle length against the 28-day medical standard.</p>
+</div>
+<div class="chart-item">
+<div id="bleeding_duration_chart" class="google-chart"></div>
+<p class="chart-p">Monitoring bleeding duration patterns over months.</p>
+</div>
+<div class="chart-item">
+<div id="mood_distribution_chart" class="google-chart"></div>
+<p class="chart-p">Mapping your current mood to your most likely hormonal cycle phase.</p>
+</div>
+</div>
+</section>
+</div> <div class="map-row">
+<section id="clinic-locator" class="card">
+<h2>📍 Nearby Clinics</h2>
+<p id="location-status">Find specialized women's health care near you.</p>
+<div id="map-frame" class="map-placeholder">
+<button type="button" id="btn-find-clinics">Locate Care🏥</button>
+<p class="map-hint">Locate nearby Gynecologists & Women's Health Centers</p>
+</div>
+</section>
+</div> </div>
+</div>
+<aside class="wellness-card">
+<details>
+<summary class="tip-summary-stack">
+<strong>Sahi Didi's Tip 💡</strong>
+</summary>
+<div class="tip-content">
+<p id="daily-tip">"Remember to stay hydrated today! Your body is doing incredible work. 🌸"</p>
+</div></details></aside>
+</main>
+<footer class="main-footer">
+<div class="container">
+<p class="single-line-footer">Empowering cycles, resolving taboos — <strong>Sahi Cycle 2026</strong></p>
+</div>
+</footer>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="auth.js"></script>
+<script>
+firebase.auth().onAuthStateChanged((user) => {
+const overlay = document.getElementById('login-overlay');
+if (user){
+overlay.style.display = 'none';} else {
+// Agar user login nahi hai, toh Modal dikhao
+overlay.style.display = 'flex';
+}
+});
+</script>
+ <script src="script.js"></script>
+</body>
+</html>
